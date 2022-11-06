@@ -22,8 +22,9 @@ export const useRecordsStore = defineStore({
       reader.onloadend = function () {
         base64 = reader.result;
         base64 = base64.split(",")[1];
-				base64 = "data:audio/wav;base64,"+base64;
+        base64 = "data:audio/wav;base64," + base64;
         that.records.push({
+					id: that.records.length,
           title: title,
           date: timestring,
           audioB64: base64,
@@ -32,6 +33,9 @@ export const useRecordsStore = defineStore({
     },
     removeRecordByIndex(index) {
       this.records.splice(index, 1);
+    },
+    saveRecordTitle(index, title) {
+      this.records[index].title = title;
     },
   },
 });
