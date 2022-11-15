@@ -14,12 +14,15 @@ import {
   faStop,
   faStopCircle,
   faXmark,
+  faMicrophone,
+	faList,
+	faSliders,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faPlay, faPencil, faStop, faStopCircle, faXmark);
+library.add(faPlay, faPencil, faStop, faStopCircle, faXmark, faMicrophone, faList, faSliders);
 
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import "bootstrap"
+import "bootstrap";
 
 import "./assets/main.css";
 
