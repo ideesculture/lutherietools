@@ -14,18 +14,44 @@
     <div id="waveform-current"></div>
     <div id="waveform-spectogram"></div>
     <div id="waveform" v-show="recording"></div>
-
-    <RecordingView
-      v-for="(record, index) in storeRecords.records"
-      :key="record.id"
-      :id="record.id"
-      :title="record.title"
-      :date="record.date"
-      :audioUrl="record.audioB64"
-      :audioB64="record.audioB64"
-      @remove="removeRecord(index)"
-      @savetitle="saveTitle"
-    />
+    <div class="audioRecordDiv" v-for="(record, index) in storeRecords.records" v-bind:key="index">
+      <RecordingView
+        :key="record.id"
+        :id="record.id"
+        :title="record.title"
+        :date="record.date"
+        :audioUrl="record.audioB64"
+        :audioB64="record.audioB64"
+        @remove="removeRecord(index)"
+        @savetitle="saveTitle"
+      />
+      <button @click="togglePtDialog(index)" v-if="!record.PtDialogIsOpen">
+        Post-traitement
+      </button>
+      <div v-if="record.PtDialogIsOpen">
+        <form action="https://lutherietools.ideesculture.fr/api/" method="post">
+          <label>filepath</label>
+          <input
+            name="filepath"
+            value="Clips audio/Violon.wav"
+            type="text"
+          /><br />
+          <label>horizon</label>
+          <input name="horizon" value="0.02" type="text" /><br />
+          <label>overlap</label>
+          <input name="overlap" value="0.15" type="text" /><br />
+          <label>nbPoles</label>
+          <input name="nbPoles" value="100" type="text" /><br />
+          <label>samplerate</label>
+          <input name="samplerate" value="44100" type="text" /><br />
+          <label>exportFolder</label>
+          <input name="exportFolder" value="exports" type="text" /><br />
+					<button @click="togglePtDialog(index)">Annuler</button>
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+      <div id="voir-post-traitement"></div>
+    </div>
   </div>
 </template>
 
@@ -316,6 +342,7 @@ export default {
       mediaRecorder: null,
       audioChunks: [],
       storeRecords: storeRecords,
+      PtDialogIsOpen: true,
     };
   },
   methods: {
@@ -329,6 +356,10 @@ export default {
     },
     increment() {
       this.count++;
+    },
+    togglePtDialog(index) {
+      console.log("openPtDialog");
+      storeRecords.records[index].PtDialogIsOpen = !storeRecords.records[index].PtDialogIsOpen;
     },
     openmic() {
       this.micon = true;
@@ -416,12 +447,17 @@ export default {
 </script>
 
 <style scoped>
+.audioRecordDiv {
+	background-color: #f9f9f9;
+  border-radius: 10px;
+	margin-bottom:8px;
+	padding:12px;
+}
 .audioRecordLi {
   list-style-type: none;
+	background-color: #d8d8d8;
   display: block;
   padding: 12px;
-  background-color: #d8d8d8;
-  border-radius: 10px;
 }
 .audioRecordLi .title {
   font-weight: bold;

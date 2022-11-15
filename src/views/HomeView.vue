@@ -3,7 +3,7 @@ import LutherieToolsWelcome from "../components/LutherieToolsWelcome.vue";
 </script>
 
 <template>
-  <main>
-    <LutherieToolsWelcome />
-  </main>
+	<div class="container">
+	<LutherieToolsWelcome />
+	</div>
 </template>

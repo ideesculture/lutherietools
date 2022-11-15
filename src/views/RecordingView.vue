@@ -5,36 +5,25 @@ import Spectrogram from "wavesurfer.js/dist/plugin/wavesurfer.spectrogram";
 import base64js from "base64-js";
 
 export default {
-  props: ["id", "title", "date", "audioB64", "audioUrl"],
+  props: ["id", "title", "date", "audioB64", "audioUrl", "PtDialogIsOpen"],
   methods: {
     saveTitle(e) {
       // get the title
       let title = e.srcElement.textContent;
-			console.log("saveTitle", title);
-      this.$emit('savetitle', this.id, title);
-    },
+      console.log("saveTitle", title);
+      this.$emit("savetitle", this.id, title);
+    }
   },
-	mounted() {
-		let id = this.id;
-		console.log("#wave-spectrogram" + id);
-		/*let wavesurfer = WaveSurfer.create({
-			plugins: [
-					Spectrogram.create({
-							container: "#wave-spectrogram" + id,
-							labels: true,
-							height: 256,
-					})
-			]
-		});*/
-		//console.log(wavesurfer);
-		//wavesurfer.loadArrayBuffer(this.audioB64);
-  }
+  mounted() {
+    let id = this.id;
+    console.log("#wave-spectrogram" + id);
+  },
 };
 </script>
 
 <template>
   <div class="audioRecord">
-		<span class="recordId">{{ id }}</span>
+    <span class="recordId">{{ id }}</span>
     <span
       contenteditable="true"
       @blur="saveTitle($event)"
@@ -59,19 +48,16 @@ export default {
 
 <style scoped>
 .recordId {
-	color:white;
-	font-size:0.6em;
+  color: white;
+  font-size: 0.6em;
 }
 .wave-spectrogram {
-	height:120px;
-	background-color:black;
+  height: 120px;
+  background-color: black;
 }
 .audioRecord {
   list-style-type: none;
   display: block;
-  padding: 12px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
 }
 .audioRecord .title {
   font-weight: bold;

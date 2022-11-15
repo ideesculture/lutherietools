@@ -17,6 +17,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 library.add(faPlay, faPencil, faStop, faStopCircle, faXmark);
 
+import "bootstrap/dist/css/bootstrap.min.css"
+
+import "bootstrap"
+
 import "./assets/main.css";
 
 const app = createApp(App);
