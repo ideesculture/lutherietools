@@ -15,10 +15,31 @@ import {
   faStopCircle,
   faXmark,
   faMicrophone,
-	faList,
-	faSliders,
+  faList,
+  faSliders,
+  faMicrophoneLines,
+  faBullseye,
+  faGear,
+  faBook,
+  faFileContract,
+  faPuzzlePiece,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faPlay, faPencil, faStop, faStopCircle, faXmark, faMicrophone, faList, faSliders);
+library.add(
+  faPlay,
+  faPencil,
+  faStop,
+  faStopCircle,
+  faXmark,
+  faMicrophone,
+  faList,
+  faSliders,
+  faMicrophoneLines,
+  faBullseye,
+  faGear,
+  faBook,
+  faFileContract,
+  faPuzzlePiece
+);
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -26,7 +47,7 @@ import "bootstrap";
 
 import "./assets/main.css";
 
-const app = createApp(App);
+const app = createApp(App, { visible: false });
 
 app.use(createPinia());
 app.use(router);

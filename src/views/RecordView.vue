@@ -442,6 +442,7 @@ export default {
   mounted() {
     this.micon = false;
     this.micoff = true;
+		//$(".navbar-collapse.show").removeClass("show");
   },
 };
 </script>

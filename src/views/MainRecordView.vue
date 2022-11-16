@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+
+</script>
 
 <template>
-  <div id="top">haut</div>
+  <div id="top"></div>
   <div id="bottom">
     <div id="topbottomright">
       Source d'entrée : unprocessed<br />

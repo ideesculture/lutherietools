@@ -1,12 +1,24 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+<script>
+export default {
+  data() {
+    return {
+      showCollapse: false
+    }
+  },
+  watch: {
+    '$route' () {
+      // This will close the collapse if any part of the route changes
+      // including query, params, hash, name, or path
+      this.showCollapse = false
+    }
+  }
+}
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img
@@ -15,7 +27,7 @@ import HelloWorld from "./components/HelloWorld.vue";
               src="@/assets/lutherietools.svg"
               style="height: 40px"
           /></a>
-					LutherieTools
+          LutherieTools
           <button
             class="navbar-toggler"
             type="button"
@@ -24,40 +36,55 @@ import HelloWorld from "./components/HelloWorld.vue";
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            @click="visible = !visible"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <RouterLink class="nav-link active" to="/">Accueil</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink class="nav-link" to="/record"
-                  >Enregistrer</RouterLink
+                <RouterLink class="nav-link" to="/record">
+                  <font-awesome-icon icon="microphone-alt" />
+                  Enregistrer</RouterLink
                 >
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link" to="/about">A propos</RouterLink>
+                <RouterLink class="nav-link" to="/record">
+                  <font-awesome-icon icon="bullseye" />
+                  Afficher les observations</RouterLink
+                >
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" to="/record">
+                  <font-awesome-icon icon="gear" />
+                  Réglages</RouterLink
+                >
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" to="/record">
+                  <font-awesome-icon icon="book" />
+                  Tutoriel</RouterLink
+                >
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" to="/record">
+                  <font-awesome-icon icon="file-contract" />
+                  Confidentialité et licence</RouterLink
+                >
+              </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link" to="/about">
+                  <font-awesome-icon icon="puzzle-piece" />
+                  A propos</RouterLink
+                >
               </li>
             </ul>
-            <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
           </div>
         </div>
       </nav>
     </div>
   </header>
-
+	<div style="height:64px;"></div>
   <RouterView />
   <nav class="navbar fixed-bottom navbar-light bg-light">
     <div class="container-fluid">
@@ -68,17 +95,17 @@ import HelloWorld from "./components/HelloWorld.vue";
         </button>
       </RouterLink>
       <RouterLink class="nav-link" to="/mainselect">
-      <button class="btn btn-outline-success me-2" type="button">
-        <font-awesome-icon icon="sliders" />
-        sélectionner
-      </button>
-			</RouterLink>
+        <button class="btn btn-outline-success me-2" type="button">
+          <font-awesome-icon icon="sliders" />
+          sélectionner
+        </button>
+      </RouterLink>
       <RouterLink class="nav-link" to="/mainresults">
-      <button class="btn btn-outline-success me-2" type="button">
-        <font-awesome-icon icon="list" />
-        résultats
-      </button>
-			</RouterLink>
+        <button class="btn btn-outline-success me-2" type="button">
+          <font-awesome-icon icon="list" />
+          résultats
+        </button>
+      </RouterLink>
     </div>
   </nav>
 </template>
