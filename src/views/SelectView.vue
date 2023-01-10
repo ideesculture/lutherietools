@@ -17,11 +17,10 @@
         @remove="removeRecord(index)"
         @savetitle="saveTitle"
       />
-      <button @click="togglePtDialog(index)" v-if="!record.PtDialogIsOpen">
+      <button @click="togglePtDialog(index)" v-if="!record.PtDialogIsOpen" :disabled="buttonsDisabled">
         Post-traitement
       </button>
       <div v-if="record.PtDialogIsOpen">
-        <form action="https://lutherietools.ideesculture.fr/api/" method="post">
           <label>filepath</label>
           <input
             name="filepath"
@@ -38,9 +37,11 @@
           <input name="samplerate" value="44100" type="text" /><br />
           <label>exportFolder</label>
           <input name="exportFolder" value="exports" type="text" /><br />
-          <button @click="togglePtDialog(index)">Annuler</button>
-          <button type="submit">Envoyer</button>
-        </form>
+          <button @click="togglePtDialog(index)" :disabled="buttonsDisabled">Annuler</button>
+          <button @click="posttreat" :disabled="buttonsDisabled">Envoyer</button>
+<!--
+        <form action="https://lutherietools.ideesculture.fr/api/" method="post">
+				</form> -->
       </div>
       <div id="voir-post-traitement"></div>
     </div>
@@ -76,8 +77,11 @@ export default {
       audioChunks: [],
       storeRecords: storeRecords,
       PtDialogIsOpen: true,
+			buttonsDisabled: false
     };
   },
+	computed: {
+	},
   methods: {
     removeRecord(index) {
       console.log("remove", index);
@@ -164,6 +168,12 @@ export default {
     toggleplaymic() {
       this.wavesurfer.microphone.togglePlay();
     },
+		posttreat() {
+			console.log("posttreat");
+			// with hash, resulting in /about#team
+			this.buttonsDisabled = true;
+			//this.$router.push('/graph');
+		}
   },
   mounted() {
     this.micon = false;
@@ -196,5 +206,20 @@ export default {
 }
 .audioRecordLi audio {
   width: 100%;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+	color:gray;
+	border-color:gray;
+}
+button:disabled:active {
+	transform: none;
+	background-color: gray;
+}
+button:disabled:hover {
+	background-color: gray;
+	border:gray;
+	color:white;
 }
 </style>
