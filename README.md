@@ -1,34 +1,46 @@
 # lutherietools
 
-This template should help get you started developing with Vue 3 in Vite.
+LutherieTools
 
-## Recommended IDE Setup
+## Installation de l'environnement de développement sous MacOS
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+```sh
+brew install npm
+npm install -g --save vue
+npm install -g --save vite
+```
 
-## Customize configuration
+## Installation de l'environnement de développement sous Windows
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+\[A venir\]
 
-## Project Setup
+## Installation de l'environnement de développement sous Linux
+
+\[A venir\]
+
+## Personnaliser la configuration
+
+Voir [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Installation du projet en local
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Lancement et recompilation à la volée pendant le développement
 
 ```sh
-npm run dev
+vite
 ```
 
-### Compile and Minify for Production
+### Compiler pour le déploiement
 
 ```sh
-npm run build
+vite build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Lint du code avec [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
