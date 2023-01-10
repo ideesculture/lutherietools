@@ -18,7 +18,7 @@
     "base64-js": "^1.5.1",
     "bootstrap": "^5.2.2",
     "pinia": "^2.0.23",
-    "vue": "^3.2.41",
+    "vue": "^3.2.45",
     "vue-router": "^4.1.5",
     "wavesurfer.js": "^6.3.0"
   },
@@ -29,6 +29,6 @@
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
     "prettier": "^2.7.1",
-    "vite": "^3.1.8"
+    "vite": "^3.2.5"
   }
 }
