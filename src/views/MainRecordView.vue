@@ -1,7 +1,8 @@
 <template>
-  <div id="top"></div>
-  <div ref="wave2" id="wave2"></div>
-  <div ref="wave3" id="wave3" @click="test"></div>	
+  <div id="top">
+    <div ref="wave2" id="wave2"></div>
+  </div>
+
   <div id="bottom">
     <div id="topbottomright">
       Source d'entrée : unprocessed<br />
@@ -31,7 +32,7 @@ export default {
     return {
       count: 0,
       wavesurfer: null,
-			wavesurfer2: null,
+      wavesurfer2: null,
       wavesurferCurrent: null,
       spectrogram: null,
       microphone: {},
@@ -63,13 +64,14 @@ export default {
       this.$nextTick(() => {
         this.wavesurfer = WaveSurfer.create({
           container: this.$refs.wave2,
-          waveColor: "#31A9F9",
-          progressColor: "#848383",
-          interact: true,
-          audioContext: this.context || null,
-          audioScriptProcessor: this.processor || null,
+          height: 360,
+          barWidth: 3,
+          cursorColor: "#000000",
+          progressColor: "#333333",
+          waveColor: "#111111",
           plugins: [Microphone.create()],
         });
+        let ws = this.wavesurfer;
         this.wavesurfer.microphone.on("deviceReady", function (stream) {
           console.info("Device ready!");
           console.info(stream);
@@ -86,6 +88,7 @@ export default {
             const audioUrl = URL.createObjectURL(audioBlob);
             const audio = new Audio(audioUrl);
             audio.play();
+            ws.load(audioUrl);
           });
         });
         this.wavesurfer.microphone.on("deviceError", function (code) {
@@ -102,6 +105,7 @@ export default {
     stopdevicemic() {
       this.wavesurfer.microphone.stopDevice();
       this.recording = false;
+      console.log(window.audioUrl);
     },
     playmic() {
       this.wavesurfer.microphone.play();
@@ -114,25 +118,16 @@ export default {
       this.micon = false;
       this.micoff = true;
       this.bottomproperties = new Date().toLocaleString();
+      this.wavesurfer.load(window.audioUrl);
     },
     toggleplaymic() {
       this.wavesurfer.microphone.togglePlay();
-    },
-		test() {
-			this.wavesurfer2 = WaveSurfer.create({
-				container: this.$refs.wave3,
-				barWidth: 3
-			});
-      this.wavesurfer2.load(
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-      );
- 
-		}
+    }
   },
   mounted() {
     this.micon = false;
     this.micoff = true;
- },
+  },
 };
 </script>
 
@@ -187,7 +182,8 @@ export default {
   color: white;
   border: 1px solid darkred;
 }
-#stopmicrophone {
+#stopmicrophone,
+#show {
   height: 120px;
   width: 120px;
   border-radius: 120px;
@@ -204,13 +200,7 @@ export default {
   text-align: center;
 }
 #wave2 {
-  height: 180px;
-  background-color: lightgray;
-  width: 100%;
-}
-#wave3 {
-  height: 180px;
-  background-color: lightcoral;
+  height: 100%;
   width: 100%;
 }
 </style>
