@@ -20,7 +20,7 @@ export default {
     <div class="wrapper">
       <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
             <img
               alt="Vue logo"
               class="logo"
@@ -43,13 +43,13 @@ export default {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <RouterLink class="nav-link" to="/record">
-                  <font-awesome-icon icon="microphone-alt" />
-                  Enregistrer</RouterLink
+                <RouterLink class="nav-link" to="/select">
+                  <font-awesome-icon icon="eye" />
+                  Sélectionner</RouterLink
                 >
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link" to="/record">
+                <RouterLink class="nav-link" to="/select">
                   <font-awesome-icon icon="bullseye" />
                   Afficher les observations</RouterLink
                 >
@@ -94,7 +94,7 @@ export default {
           enregistrer
         </button>
       </RouterLink>
-      <RouterLink class="nav-link" to="/mainselect">
+      <RouterLink class="nav-link" to="/select">
         <button class="btn btn-outline-success me-2" type="button">
           <font-awesome-icon icon="sliders" />
           sélectionner

@@ -23,6 +23,7 @@ import {
   faBook,
   faFileContract,
   faPuzzlePiece,
+	faEye
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faPlay,
@@ -38,7 +39,8 @@ library.add(
   faGear,
   faBook,
   faFileContract,
-  faPuzzlePiece
+  faPuzzlePiece,
+	faEye
 );
 
 import "bootstrap/dist/css/bootstrap.min.css";

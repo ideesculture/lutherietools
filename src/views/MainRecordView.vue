@@ -25,6 +25,9 @@
 <script>
 import WaveSurfer from "wavesurfer.js";
 import Microphone from "wavesurfer.js/dist/plugin/wavesurfer.microphone";
+import { useRecordsStore } from "@/stores/records";
+
+const storeRecords = useRecordsStore();
 
 export default {
   components: {},
@@ -45,6 +48,7 @@ export default {
       audioChunks: [],
       PtDialogIsOpen: true,
       bottomproperties: "-",
+      storeRecords: storeRecords,
     };
   },
   methods: {
@@ -89,6 +93,7 @@ export default {
             const audio = new Audio(audioUrl);
             audio.play();
             ws.load(audioUrl);
+						storeRecords.addRecord("Sans titre...", new Date().toLocaleString(), audioBlob);
           });
         });
         this.wavesurfer.microphone.on("deviceError", function (code) {
@@ -118,7 +123,7 @@ export default {
       this.micon = false;
       this.micoff = true;
       this.bottomproperties = new Date().toLocaleString();
-      this.wavesurfer.load(window.audioUrl);
+      //this.wavesurfer.load(window.audioUrl);
     },
     toggleplaymic() {
       this.wavesurfer.microphone.togglePlay();

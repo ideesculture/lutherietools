@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import MainRecordView from "../views/MainRecordView.vue";
+//import MainRecordView from "../views/MainRecordView.vue";
 import MainSelectView from "../views/MainSelectView.vue";
 import MainResultsView from "../views/MainResultsView.vue";
 
@@ -10,12 +9,15 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: HomeView,
+      component: () => import("../views/HomeView.vue")
     },
     {
       path: "/mainrecord",
       name: "mainrecord",
-      component: MainRecordView,
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/MainRecordView.vue")
     },
     {
       path: "/mainselect",
@@ -36,12 +38,12 @@ const router = createRouter({
       component: () => import("../views/AboutView.vue"),
     },
     {
-      path: "/record",
-      name: "record",
+      path: "/select",
+      name: "select",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/RecordView.vue"),
+      component: () => import("../views/SelectView.vue"),
     },
     {
       path: "/test",

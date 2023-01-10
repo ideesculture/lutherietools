@@ -10,10 +10,12 @@ export const useRecordsStore = defineStore({
   }),
   actions: {
     addRecord(title, date, audioBlob) {
+			if((date == null) || (date == "")) {
+				date = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
+			}
       this.activeRecord.title = title;
-      let timestring =
-        new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
-      this.activeRecord.date = timestring;
+      
+      this.activeRecord.date = date;
       this.activeRecord.audioBlob = audioBlob;
       var reader = new window.FileReader();
       let that = this;
@@ -26,7 +28,7 @@ export const useRecordsStore = defineStore({
         that.records.push({
 					id: that.records.length,
           title: title,
-          date: timestring,
+          date: date,
           audioB64: base64,
         });
       };
@@ -37,5 +39,8 @@ export const useRecordsStore = defineStore({
     saveRecordTitle(index, title) {
       this.records[index].title = title;
     },
+		size() {
+			return this.records.length
+		}
   },
 });

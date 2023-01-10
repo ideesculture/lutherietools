@@ -1,23 +1,11 @@
 <template>
   <div class="about">
-    <button @click="select">Select</button>
-    <button v-if="micoff" v-on:click="openmic" id="recordButton">Record</button>
-    <button v-if="micon" @click="startmic">Start</button>
-    <button v-if="micon" @click="stopmic">Stop</button>
-    <!--
-    <br />
-    <button v-if="micon" @click="stopdevicemic">StopDevice</button>
-    <button v-if="micon" @click="playmic">Play</button>
-    <button v-if="micon" @click="pausemic">Pause</button>
-    <button v-if="micon" @click="toggleplaymic">togglePlay</button>
--->
-    <div id="waveform-current"></div>
-    <div id="waveform-spectogram"></div>
-    <div id="waveform" v-show="recording"></div>
+    <div id="waveform"></div>
     <div
       class="audioRecordDiv"
       v-for="(record, index) in storeRecords.records"
       v-bind:key="index"
+			
     >
       <RecordingView
         :key="record.id"
