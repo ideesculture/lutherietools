@@ -12,7 +12,25 @@ npm install -g --save vite
 
 ## Installation de l'environnement de développement sous Windows
 
-\[A venir\]
+- Télécharger et installer Node depuis le site nodejs
+https://nodejs.org/en/download/
+
+```
+npm install -g --save vue
+npm install -g --save vite
+```
+
+Cloner le dépôt github sur l'ordinateur, puis en ligne de commandes, aller dans le dossier et :
+
+```
+npm install
+````
+
+Et pour lancer le serveur de développement (auto-reload quand modification):
+
+```
+vite
+```
 
 ## Installation de l'environnement de développement sous Linux
 
