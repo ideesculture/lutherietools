@@ -2,7 +2,7 @@
   <div class="about">
 	<div>
 		<h1>A propos de LutherieTools</h1>
-		<p>...</p>
+		<p>Ceci est le contenu de ma page A propos.</p>
 	</div>
   </div>
 </template>

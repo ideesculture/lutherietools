@@ -24,21 +24,19 @@
           <label>filepath</label>
           <input
             name="filepath"
-            value="Clips audio/Violon.wav"
+            :value="record.filepath"
             type="text"
           /><br />
           <label>horizon</label>
-          <input name="horizon" value="0.02" type="text" /><br />
+          <input name="horizon" :value="record.horizon" type="text" /><br />
           <label>overlap</label>
-          <input name="overlap" value="0.15" type="text" /><br />
+          <input name="overlap" :value="record.overlap" type="text" /><br />
           <label>nbPoles</label>
-          <input name="nbPoles" value="100" type="text" /><br />
-          <label>samplerate</label>
-          <input name="samplerate" value="44100" type="text" /><br />
+          <input name="nbPoles"  :value="record.nbPoles" type="text" /><br />
           <label>exportFolder</label>
-          <input name="exportFolder" value="exports" type="text" /><br />
+          <input name="exportFolder" :value="record.exportFolder" type="text" /><br />
           <button @click="togglePtDialog(index)" :disabled="buttonsDisabled">Annuler</button>
-          <button @click="posttreat" :disabled="buttonsDisabled">Envoyer</button>
+          <button @click="posttreat(index)" :disabled="buttonsDisabled">Envoyer</button>
 <!--
         <form action="https://lutherietools.ideesculture.fr/api/" method="post">
 				</form> -->
@@ -168,11 +166,13 @@ export default {
     toggleplaymic() {
       this.wavesurfer.microphone.togglePlay();
     },
-		posttreat() {
+		posttreat(index) {
 			console.log("posttreat");
+			console.log(index);
+			this.$parent.$parent.$data.currentrecord = storeRecords.records[index];
 			// with hash, resulting in /about#team
 			this.buttonsDisabled = true;
-			//this.$router.push('/graph');
+			this.$router.push('/graph');
 		}
   },
   mounted() {
