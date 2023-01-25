@@ -9,40 +9,58 @@ export default {
   components: {},
   data() {
     return {
-      count: 0
+      count: 0,
+      currentrecord: {},
     };
   },
   methods: {
-    injectIndexInsideData(data) {
+    injectIndexInsideData(data, index2) {
       let result = data.map((x, index) => {
-        return { index: index, value: Math.abs(x) };
+        return { index: index, indexSerie: index2, value: Math.abs(x) };
       });
       return result;
     },
   },
   async mounted() {
+    this.currentrecord = this.$parent.$parent.$data.currentrecord;
+
+    /*const response = await fetch("https://lutherietools.ideesculture.fr/api/index.php", {
+      method: "POST",
+      cache: "no-cache",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        filepath: "Clips audio/Violon.wav",
+        horizon: 0.05,
+        overlap: 0,
+        nbPoles: 100,
+        samplerate: 48000,
+        exportfolder: "16733962400",
+      }), // body data type must match "Content-Type" header
+    });
+		console.log("json", response.json());*/
+
     var timeStep = 1;
     // Data
-    let dataset = await d3.json(
-      "https://lutherietools.ideesculture.fr/api/python/exports/F.json"
+    let matrices = await d3.json(
+      "https://lutherietools.ideesculture.fr/api/json.php/python/exports/export_16733962400/matrices.json"
     );
-    let datasetColor = await d3.json(
-      "https://lutherietools.ideesculture.fr/api/python/exports/B.json"
-    );
-    let timeStepJson = await d3.json(
-      "https://lutherietools.ideesculture.fr/api/python/exports/T.json"
-    );
+    let dataset = matrices["F"];
+    let datasetColor = matrices["B"];
+    let timeStepJson = matrices["T"];
+		let ksi = matrices["Ksi"];
+
     timeStep = timeStepJson[0][1];
     console.log("timeStep", timeStep);
 
     var tooltip = d3
-      .select("body")
+      .select("#chart")
       .append("div")
       .style("position", "absolute")
+			.style("opacity", "1")
       .style("z-index", "10")
-      .style("visibility", "hidden")
       .attr("class", "tooltip")
-      .text("a simple tooltip");
+      .text("")
+			.attr("data-html", "true");
 
     const dataextract = this.injectIndexInsideData(dataset[1]);
 
@@ -52,6 +70,14 @@ export default {
         return column;
       });
     });
+		const minColor = d3.min(datasetColor, function (row) {
+      return d3.min(row, function (column) {
+				if(column == -200) return 0;
+        return column;
+      });
+    });
+		console.log("maxColor", maxColor);
+		console.log("minColor", minColor);
 
     const xAccessor = (d) => d.index * timeStep;
     const yAccessor = function (d) {
@@ -62,7 +88,10 @@ export default {
       }
     };
     const colorAccessor = function (d, indexSerie) {
-      return (1 / maxColor) * datasetColor[indexSerie][d.index];
+			if(datasetColor[indexSerie][d.index] == -200) return 0;
+			let opacityValue = datasetColor[indexSerie][d.index];
+      //return Math.abs(maxColor)/Math.abs(opacityValue);
+			return Math.abs(minColor - opacityValue)/Math.abs(minColor - maxColor);
     };
 
     let dimensions = {
@@ -114,7 +143,7 @@ export default {
 
       containerZ
         .selectAll("circle")
-        .data(this.injectIndexInsideData(value))
+        .data(this.injectIndexInsideData(value, index))
         .join("circle")
         .attr("cx", (d) => xScale(xAccessor(d)))
         .attr("cy", (d) => yScale(yAccessor(d)))
@@ -125,16 +154,19 @@ export default {
         .on("mouseover", function (d) {
           console.log("target", d);
           if (d.target.style.opacity > 0.06) {
-            tooltip.text(
-              Math.round(d.target.__data__.value * 100) / 100 + " Hz"
+						let ksiValue = ksi[d.target.__data__.indexSerie][d.target.__data__.index];
+						ksiValue = Math.round(ksiValue * 100) / 100;
+            tooltip.html(
+              Math.round(d.target.__data__.value * 100) / 100 + " Hz<br />Ksi : "+ksiValue
             );
+						//tooltip.co
             return tooltip.style("visibility", "visible");
           }
         })
         .on("mousemove", function () {
           return tooltip
-            .style("top", event.pageY - 10 + "px")
-            .style("left", event.pageX + 10 + "px");
+            .style("top", event.pageY - 90 + "px")
+            .style("left", event.pageX - 260 + "px");
         })
         .on("mouseout", function () {
           return tooltip.style("visibility", "hidden");
@@ -167,6 +199,67 @@ export default {
       .attr("y", dimensions.ctrHeight / 2)
       .attr("fill", "black")
       .text("Hz");
+
+
+  // ! Creating the legend
+  var linearGradient = svg
+    .append("linearGradient")
+    .attr("id", "linear-gradient");
+  //Horizontal gradient
+  linearGradient
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "0%");
+  //Append multiple color stops by using D3's data/enter step
+  linearGradient
+    .selectAll("stop")
+    .data([
+      { offset: "0%", color: "#3575B4" },
+      { offset: "50%", color: "#FFFFAA" },
+      { offset: "100%", color: "#D73027" },
+    ])
+    .enter()
+    .append("stop")
+    .attr("offset", function (d) {
+      return d.offset;
+    })
+    .attr("stop-color", function (d) {
+      return d.color;
+    });
+  minLegend = d3.min(opacityBar);
+  maxLegend = d3.max(opacityBar);
+  sumMinMaxLegend =
+    d3.max(opacityBar) +
+    d3.min(opacityBar);
+  var legendWidth = 600 * 0.3,
+    legendHeight = 8;
+  //Color Legend container
+  var legendsvg = svg
+    .append("g")
+    .attr("id", "legend")
+    .attr(
+      "transform",
+      "translate(" + (dimensions.margins.left + legendWidth / 2) + "," + (dimensions.margins.top - 50) + ")"
+    );
+  //Draw the Rectangle
+  legendsvg
+    .append("rect")
+    .attr("class", "legendRect")
+    .attr("x", -legendWidth / 2 + 0.5)
+    .attr("y", 10)
+    .attr("width", legendWidth)
+    .attr("height", legendHeight)
+    .style("fill", "url(#linear-gradient)")
+    .style("stroke", "black")
+    .style("stroke-width", "1px");
+  //Append title
+  legendsvg
+    .append("text")
+    .attr("class", "legendTitle")
+    .attr("x", 0)
+    .attr("y", 2)
+    .text("Average Global Surface Temperature");
   },
 };
 </script>
