@@ -22,27 +22,16 @@ export default {
     },
   },
   async mounted() {
+		console.log("url", this.$parent.$parent.url);
+		let url = this.$parent.$parent.url;
+		url = url.replace("/api/", "/api/json.php/");
+		//console.log($route.params.id);
     this.currentrecord = this.$parent.$parent.$data.currentrecord;
-
-    /*const response = await fetch("https://lutherietools.ideesculture.fr/api/index.php", {
-      method: "POST",
-      cache: "no-cache",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        filepath: "Clips audio/Violon.wav",
-        horizon: 0.05,
-        overlap: 0,
-        nbPoles: 100,
-        samplerate: 48000,
-        exportfolder: "16733962400",
-      }), // body data type must match "Content-Type" header
-    });
-		console.log("json", response.json());*/
 
     var timeStep = 1;
     // Data
     let matrices = await d3.json(
-      "https://lutherietools.ideesculture.fr/api/json.php/python/exports/export_16733962400/matrices.json"
+			url
     );
     let dataset = matrices["F"];
     let datasetColor = matrices["B"];

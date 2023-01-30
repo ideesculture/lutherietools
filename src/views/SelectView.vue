@@ -5,7 +5,6 @@
       class="audioRecordDiv"
       v-for="(record, index) in storeRecords.records"
       v-bind:key="index"
-			
     >
       <RecordingView
         :key="record.id"
@@ -17,27 +16,40 @@
         @remove="removeRecord(index)"
         @savetitle="saveTitle"
       />
-      <button @click="togglePtDialog(index)" v-if="!record.PtDialogIsOpen" :disabled="buttonsDisabled">
+      <button
+        @click="togglePtDialog(index)"
+        v-if="!record.PtDialogIsOpen"
+        :disabled="buttonsDisabled"
+      >
         Post-traitement
       </button>
       <div v-if="record.PtDialogIsOpen">
-          <label>filepath</label>
-          <input
-            name="filepath"
-            :value="record.filepath"
-            type="text"
-          /><br />
-          <label>horizon</label>
-          <input name="horizon" :value="record.horizon" type="text" /><br />
-          <label>overlap</label>
-          <input name="overlap" :value="record.overlap" type="text" /><br />
-          <label>nbPoles</label>
-          <input name="nbPoles"  :value="record.nbPoles" type="text" /><br />
-          <label>exportFolder</label>
-          <input name="exportFolder" :value="record.exportFolder" type="text" /><br />
-          <button @click="togglePtDialog(index)" :disabled="buttonsDisabled">Annuler</button>
-          <button @click="posttreat(index)" :disabled="buttonsDisabled">Envoyer</button>
-<!--
+        <label>filename</label>
+        <input name="filepath" v-model="filename" type="text" /><br />
+        <label>horizon</label>
+        <input name="horizon" v-model="horizon" type="text" /><br />
+        <label>overlap</label>
+        <input name="overlap" v-model="overlap" type="text" /><br />
+        <label>nbPoles</label>
+        <input name="nbPoles" v-model="nbPoles" type="text" /><br />
+        <label>exportFolder</label>
+        <input
+          name="exportFolder"
+          v-model="exportFolder"
+          type="text"
+        /><br />
+        <button @click="cancelPtDialog(index)" :disabled="buttonsDisabled">
+          Annuler
+        </button>
+        <button @click="posttreat(index)" :disabled="buttonsDisabled">
+          Envoyer
+        </button>
+				<!-- <button :disabled="resultsDisabled"> -->
+				<button :disabled="resultsDisabled"><RouterLink class="nav-link"  :to="{ path: 'graph', params: { url: urlJson }}">
+					      <font-awesome-icon icon="spinner" class="fa-spin"  v-if="buttonsDisabled && resultsDisabled" />
+					Voir les résultats
+				</RouterLink></button>
+        <!--
         <form action="https://lutherietools.ideesculture.fr/api/" method="post">
 				</form> -->
       </div>
@@ -75,11 +87,18 @@ export default {
       audioChunks: [],
       storeRecords: storeRecords,
       PtDialogIsOpen: true,
-			buttonsDisabled: false
+      buttonsDisabled: false,
+			filepath:"",
+			horizon:0.04,
+			overlap:0.15,
+			nbPoles:100,
+			exportFolder:"exports",
+			filename:"test",
+			resultsDisabled:true,
+			urlJson:""
     };
   },
-	computed: {
-	},
+  computed: {},
   methods: {
     removeRecord(index) {
       console.log("remove", index);
@@ -94,6 +113,15 @@ export default {
     },
     togglePtDialog(index) {
       console.log("openPtDialog");
+			for(let i=0;i<storeRecords.records.length;i++) {
+				console.log(i);
+				storeRecords.records[i].PtDialogIsOpen = false;
+			}
+      storeRecords.records[index].PtDialogIsOpen =
+        !storeRecords.records[index].PtDialogIsOpen;
+    },
+		cancelPtDialog(index) {
+      console.log("cancelPtDialog");
       storeRecords.records[index].PtDialogIsOpen =
         !storeRecords.records[index].PtDialogIsOpen;
     },
@@ -166,14 +194,44 @@ export default {
     toggleplaymic() {
       this.wavesurfer.microphone.togglePlay();
     },
-		posttreat(index) {
-			console.log("posttreat");
-			console.log(index);
-			this.$parent.$parent.$data.currentrecord = storeRecords.records[index];
-			// with hash, resulting in /about#team
-			this.buttonsDisabled = true;
-			this.$router.push('/graph');
-		}
+    posttreat(index) {
+			console.log(this.overlap);
+      console.log("posttreat");
+      console.log(index);
+      this.$parent.$parent.$data.currentrecord = storeRecords.records[index];
+			let currentrecord = storeRecords.records[index];
+      // with hash, resulting in /about#team
+      this.buttonsDisabled = true;
+      //this.$router.push('/graph');
+
+      // POST request using fetch with set headers
+      let requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          filename: this.filename,
+					audio:currentrecord.audioB64,
+          horizon: parseFloat(this.horizon),
+          overlap: parseFloat(this.overlap),
+          nbPoles: parseFloat(this.nbPoles),
+          samplerate: parseFloat(this.samplerate),
+          exportfolder: this.exportFolder,
+        }),
+      };
+			let that=this;
+      fetch(
+        "https://lutherietools.ideesculture.fr/api/index.php",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((data) => {
+					this.resultsDisabled = false;
+					this.$parent.$parent.url = data.url;
+					console.log("this.$parent.$parent.url", this.urlJson);
+        });
+    },
   },
   mounted() {
     this.micon = false;
@@ -210,16 +268,16 @@ export default {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.8;
-	color:gray;
-	border-color:gray;
+  color: gray;
+  border-color: gray;
 }
 button:disabled:active {
-	transform: none;
-	background-color: gray;
+  transform: none;
+  background-color: gray;
 }
 button:disabled:hover {
-	background-color: gray;
-	border:gray;
-	color:white;
+  background-color: gray;
+  border: gray;
+  color: white;
 }
 </style>

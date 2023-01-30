@@ -88,10 +88,11 @@ export default {
           });
           mediaRecorder.addEventListener("stop", () => {
             console.log("stop");
-            const audioBlob = new Blob(audioChunks);
+            const audioBlob = new Blob(audioChunks, {type: 'audio/wav'});
             const audioUrl = URL.createObjectURL(audioBlob);
-            const audio = new Audio(audioUrl);
-            audio.play();
+						console.log("audioUrl", audioUrl);
+            //const audio = new Audio(audioUrl);
+            //audio.play();
             ws.load(audioUrl);
 						storeRecords.addRecord("Sans titre...", new Date().toLocaleString(), audioBlob);
           });
