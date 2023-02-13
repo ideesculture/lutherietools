@@ -14,26 +14,36 @@
       <br>
 
       <U> Les étudiants :  </U>
-
-      <img src="img/avatar.jpg"
-          alt="photo d'un avatar"
+      <br>
+      <img src="img/benji.jpg"
+          alt="Photo de Benjamin"
           width="400"
           height="341">
-
+      <br>
 
       <ul>
       <li><strong>Benjamin Quiedeville</strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
 
-      <img src="img/avatarneutre.jpg"
-          alt="Photo d'un autre avatar"
+      <br>
+      <img src="img/Clement.jpg"
+          alt="Photo de clément "
           width="400"
           height="341">
+      <br>
 
       <li> <strong>Clément Larcade</strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
+
+      <br>
+      <img src="img/Andreas.jpg"
+          alt="Photo de clément "
+          width="400"
+          height="341">
+      <br>
+
       <li> <strong> Andréas Autin </strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .
@@ -45,13 +55,36 @@
 
       <U> Les enseignants :  </U>
 
+      <br>
+      <img src="img/fgautier.jpg"
+          alt="Photo de M. Gautier "
+          width="400"
+          height="341">
+      <br>
+
       <ul>
       <li><strong>François Gautier </strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
+
+      <br>
+      <img src="img/fablitzer.jpg"
+          alt="Photo de M. Ablitzer "
+          width="400"
+          height="341">
+      <br>
+
       <li> <strong>Frédéric Ablitzer</strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
+
+      <br>
+      <img src="img/gmichelin.jpg"
+          alt="Photo de M. Michelin "
+          width="400"
+          height="341">
+      <br>
+
       <li> <strong> Gautier Michelin </strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .
