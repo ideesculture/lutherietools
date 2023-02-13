@@ -15,10 +15,22 @@
 
       <U> Les étudiants :  </U>
 
+      <img src="image/avatar.jpg"
+          alt="photo d'un avatar"
+          width="400"
+          height="341">
+
+
       <ul>
       <li><strong>Benjamin Quiedeville</strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
+
+      <img src="img/avatarneutre.jpg"
+          alt="Photo d'un autre avatar"
+          width="400"
+          height="341">
+
       <li> <strong>Clément Larcade</strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
