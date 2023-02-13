@@ -12,11 +12,11 @@
       Vous avez une question sur l’applicaton ? N'hésitez pas à nous contacter!
       <br>
       <br>
-
+      <U> Les étudiants :  </U>
+      <br>
+      <br>
       <table>
   
-      <caption><U> Les étudiants :  </U></caption>
-
       <tr> 
         <th>
           <img src="img/Benjamin.jpeg"
