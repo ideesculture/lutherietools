@@ -16,10 +16,10 @@
       <U> Les étudiants :  </U>
 
       <br>
-      <img src="img/benji.jpg"
+      <img src="img/Benjamin.jpeg"
           alt="Photo de Benjamin"
-          width="400"
-          height="341">
+          width="200"
+          height="200">
       <br>
 
       
@@ -30,8 +30,8 @@
       <br>
         <img src="img/Clement.jpg"
           alt="Photo de Clement "
-          width="400"
-          height="341">
+          width="200"
+          height="200">
       <br>
 
       <strong>Clément Larcade</strong>
@@ -42,8 +42,8 @@
       <br>
         <img src="img/Andreas.jpg"
           alt="Photo de Andreas "
-          width="400"
-          height="341">
+          width="200"
+          height="200">
       <br>
 
       <strong> Andréas Autin </strong>
@@ -57,10 +57,10 @@
       <U> Les enseignants :  </U>
 
       <br>
-        <img src="img/fgautier.jpg"
+        <img src="img/FGautier.jpg"
           alt="Photo de M. Gautier "
-          width="400"
-          height="341">
+          width="200"
+          height="200">
       <br>
 
       
@@ -69,10 +69,10 @@
       <U>Contact :</U> email, linkedin, GitHub. . .
 
       <br>
-        <img src="img/fablitzer.jpg"
+        <img src="img/FAblitzer.jpg"
           alt="Photo de M. Ablitzer "
-          width="400"
-          height="341">
+          width="200"
+          height="200">
       <br>
 
       <strong>Frédéric Ablitzer</strong>
@@ -80,10 +80,10 @@
       <U>Contact :</U> email, linkedin, GitHub. . .
 
       <br>
-        <img src="img/gmichelin.jpg"
+        <img src="img/GMichelin.jpg"
           alt="Photo de M. Michelin "
-          width="400"
-          height="341">
+          width="200"
+          height="200">
       <br>
 
       <strong> Gautier Michelin </strong>
