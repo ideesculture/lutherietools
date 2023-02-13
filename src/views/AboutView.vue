@@ -15,7 +15,7 @@
 
       <U> Les étudiants :  </U>
 
-      <img src="image/avatar.jpg"
+      <img src="img/avatar.jpg"
           alt="photo d'un avatar"
           width="400"
           height="341">
