@@ -22,35 +22,34 @@
           height="341">
       <br>
 
-      <ul>
-      <li><strong>Benjamin Quiedeville</strong>
+      
+      <strong>Benjamin Quiedeville</strong>
       <br>
-      <U>Contact :</U> email, linkedin, GitHub. . .</li>
+      <U>Contact :</U> email, linkedin, GitHub. . .
 
       <br>
         <img src="img/Clement.jpg"
-          alt="Photo de Clément "
+          alt="Photo de Clement "
           width="400"
           height="341">
       <br>
 
-      <li> <strong>Clément Larcade</strong>
+      <strong>Clément Larcade</strong>
       <br>
   
-      <U>Contact :</U> email, linkedin, GitHub. . .</li>
+      <U>Contact :</U> email, linkedin, GitHub. . .
 
       <br>
         <img src="img/Andreas.jpg"
-          alt="Photo de Andréas "
+          alt="Photo de Andreas "
           width="400"
           height="341">
       <br>
 
-      <li> <strong> Andréas Autin </strong>
+      <strong> Andréas Autin </strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .
-      </li>
-      </ul>
+      
 
       <br>
       <br>
@@ -64,10 +63,10 @@
           height="341">
       <br>
 
-      <ul>
-      <li><strong>François Gautier </strong>
+      
+      <strong>François Gautier </strong>
       <br>
-      <U>Contact :</U> email, linkedin, GitHub. . .</li>
+      <U>Contact :</U> email, linkedin, GitHub. . .
 
       <br>
         <img src="img/fablitzer.jpg"
@@ -76,9 +75,9 @@
           height="341">
       <br>
 
-      <li> <strong>Frédéric Ablitzer</strong>
+      <strong>Frédéric Ablitzer</strong>
       <br>
-      <U>Contact :</U> email, linkedin, GitHub. . .</li>
+      <U>Contact :</U> email, linkedin, GitHub. . .
 
       <br>
         <img src="img/gmichelin.jpg"
@@ -87,11 +86,11 @@
           height="341">
       <br>
 
-      <li> <strong> Gautier Michelin </strong>
+      <strong> Gautier Michelin </strong>
       <br>
       <U>Contact :</U> email, linkedin, GitHub. . .
-      </li>
-      </ul>
+      
+      
 
       <br>
       <br>
