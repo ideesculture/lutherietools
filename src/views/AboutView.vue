@@ -14,6 +14,7 @@
       <br>
 
       <U> Les étudiants :  </U>
+
       <br>
       <img src="img/benji.jpg"
           alt="Photo de Benjamin"
@@ -28,7 +29,7 @@
 
       <br>
       <img src="img/Clement.jpg"
-          alt="Photo de clément "
+          alt="Photo de Clément "
           width="400"
           height="341">
       <br>
@@ -39,7 +40,7 @@
 
       <br>
       <img src="img/Andreas.jpg"
-          alt="Photo de clément "
+          alt="Photo de Andréas "
           width="400"
           height="341">
       <br>
