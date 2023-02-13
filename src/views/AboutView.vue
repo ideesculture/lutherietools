@@ -28,7 +28,7 @@
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
 
       <br>
-      <img src="img/Clement.jpg"
+        <img src="img/Clement.jpg"
           alt="Photo de Clément "
           width="400"
           height="341">
@@ -36,10 +36,11 @@
 
       <li> <strong>Clément Larcade</strong>
       <br>
+  
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
 
       <br>
-      <img src="img/Andreas.jpg"
+        <img src="img/Andreas.jpg"
           alt="Photo de Andréas "
           width="400"
           height="341">
@@ -57,7 +58,7 @@
       <U> Les enseignants :  </U>
 
       <br>
-      <img src="img/fgautier.jpg"
+        <img src="img/fgautier.jpg"
           alt="Photo de M. Gautier "
           width="400"
           height="341">
@@ -69,7 +70,7 @@
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
 
       <br>
-      <img src="img/fablitzer.jpg"
+        <img src="img/fablitzer.jpg"
           alt="Photo de M. Ablitzer "
           width="400"
           height="341">
@@ -80,7 +81,7 @@
       <U>Contact :</U> email, linkedin, GitHub. . .</li>
 
       <br>
-      <img src="img/gmichelin.jpg"
+        <img src="img/gmichelin.jpg"
           alt="Photo de M. Michelin "
           width="400"
           height="341">
