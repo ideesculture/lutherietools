@@ -13,46 +13,50 @@
       <br>
       <br>
 
-      <U> Les étudiants :  </U>
+      <table>
+  
+      <caption><U> Les étudiants :  </U></caption>
 
-      <br>
-      <img src="img/Benjamin.jpeg"
+      <tr> 
+        <th>
+          <img src="img/Benjamin.jpeg"
           alt="Photo de Benjamin"
           width="200"
           height="200">
-      <br>
-
-      
-      <strong>Benjamin Quiedeville</strong>
-      <br>
-      <U>Contact :</U> email, linkedin, GitHub. . .
-
-      <br>
-        <img src="img/Clement.jpg"
+        </th> 
+        <th>
+          <img src="img/Clement.jpg"
           alt="Photo de Clement "
           width="200"
           height="200">
-      <br>
-
-      <strong>Clément Larcade</strong>
-      <br>
-  
-      <U>Contact :</U> email, linkedin, GitHub. . .
-
-      <br>
-        <img src="img/Andreas.jpg"
+          </th> 
+          <th>
+          <img src="img/Andreas.jpg"
           alt="Photo de Andreas "
           width="200"
           height="200">
-      <br>
+        </th> 
+      </tr>
 
-      <strong> Andréas Autin </strong>
-      <br>
-      <U>Contact :</U> email, linkedin, GitHub. . .
-      
+      <tr> 
+        <td>
+          <strong>Benjamin Quiedeville</strong>
+          <br>
+          <U>Contact :</U> email, linkedin, GitHub. . .
+        </td>
+        <td>
+          <strong>Clément Larcade</strong>
+          <br>
+          <U>Contact :</U> email, linkedin, GitHub. . .
+        </td> 
+        <td>
+          <strong> Andréas Autin </strong>
+          <br>
+          <U>Contact :</U> email, linkedin, GitHub. . .
+        </td> 
+      </tr>
 
-      <br>
-      <br>
+      </table>
 
       <U> Les enseignants :  </U>
 
