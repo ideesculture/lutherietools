@@ -33,22 +33,24 @@
         <label>nbPoles</label>
         <input name="nbPoles" v-model="nbPoles" type="text" /><br />
         <label>exportFolder</label>
-        <input
-          name="exportFolder"
-          v-model="exportFolder"
-          type="text"
-        /><br />
+        <input name="exportFolder" v-model="exportFolder" type="text" /><br />
         <button @click="cancelPtDialog(index)" :disabled="buttonsDisabled">
           Annuler
         </button>
         <button @click="posttreat(index)" :disabled="buttonsDisabled">
           Envoyer
         </button>
-				<!-- <button :disabled="resultsDisabled"> -->
-				<button :disabled="resultsDisabled"><RouterLink class="nav-link"  :to="{ path: 'graph', params: { url: urlJson }}">
-					      <font-awesome-icon icon="spinner" class="fa-spin"  v-if="buttonsDisabled && resultsDisabled" />
-					Voir les résultats
-				</RouterLink></button>
+
+        <button :disabled="resultsDisabled">
+          <RouterLink class="nav-link" :to="{ name: 'graph' }">
+            <font-awesome-icon
+              icon="spinner"
+              class="fa-spin"
+              v-if="buttonsDisabled && resultsDisabled"
+            />
+            Voir les résultats
+          </RouterLink>
+        </button>
         <!--
         <form action="https://lutherietools.ideesculture.fr/api/" method="post">
 				</form> -->
@@ -88,14 +90,14 @@ export default {
       storeRecords: storeRecords,
       PtDialogIsOpen: true,
       buttonsDisabled: false,
-			filepath:"",
-			horizon:0.04,
-			overlap:0.15,
-			nbPoles:100,
-			exportFolder:"exports",
-			filename:"test",
-			resultsDisabled:true,
-			urlJson:""
+      filepath: "",
+      horizon: 0.04,
+      overlap: 0.15,
+      nbPoles: 100,
+      exportFolder: "exports",
+      filename: "test",
+      resultsDisabled: true,
+      urlJson: "",
     };
   },
   computed: {},
@@ -113,14 +115,14 @@ export default {
     },
     togglePtDialog(index) {
       console.log("openPtDialog");
-			for(let i=0;i<storeRecords.records.length;i++) {
-				console.log(i);
-				storeRecords.records[i].PtDialogIsOpen = false;
-			}
+      for (let i = 0; i < storeRecords.records.length; i++) {
+        console.log(i);
+        storeRecords.records[i].PtDialogIsOpen = false;
+      }
       storeRecords.records[index].PtDialogIsOpen =
         !storeRecords.records[index].PtDialogIsOpen;
     },
-		cancelPtDialog(index) {
+    cancelPtDialog(index) {
       console.log("cancelPtDialog");
       storeRecords.records[index].PtDialogIsOpen =
         !storeRecords.records[index].PtDialogIsOpen;
@@ -195,11 +197,11 @@ export default {
       this.wavesurfer.microphone.togglePlay();
     },
     posttreat(index) {
-			console.log(this.overlap);
+      console.log(this.overlap);
       console.log("posttreat");
       console.log(index);
       this.$parent.$parent.$data.currentrecord = storeRecords.records[index];
-			let currentrecord = storeRecords.records[index];
+      let currentrecord = storeRecords.records[index];
       // with hash, resulting in /about#team
       this.buttonsDisabled = true;
       //this.$router.push('/graph');
@@ -212,7 +214,7 @@ export default {
         },
         body: JSON.stringify({
           filename: this.filename,
-					audio:currentrecord.audioB64,
+          audio: currentrecord.audioB64,
           horizon: parseFloat(this.horizon),
           overlap: parseFloat(this.overlap),
           nbPoles: parseFloat(this.nbPoles),
@@ -220,17 +222,21 @@ export default {
           exportfolder: this.exportFolder,
         }),
       };
-			let that=this;
+      let that = this;
       fetch(
         "https://lutherietools.ideesculture.fr/api/index.php",
         requestOptions
       )
         .then((response) => response.json())
         .then((data) => {
-					this.resultsDisabled = false;
-					this.$parent.$parent.url = data.url;
-					console.log("this.$parent.$parent.url", this.urlJson);
+          console.log(".url", data.url);
+          that.resultsDisabled = false;
+          that.$parent.$parent.url = data.url;
+          console.log("this.$parent.$parent.url", that.$parent.$parent.url);
         });
+    },
+    viewgraph() {
+      console.log("this.$parent.$parent.url", this.$parent.$parent.url);
     },
   },
   mounted() {

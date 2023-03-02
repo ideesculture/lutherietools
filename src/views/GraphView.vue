@@ -24,6 +24,7 @@ export default {
   async mounted() {
 		console.log("url", this.$parent.$parent.url);
 		let url = this.$parent.$parent.url;
+		if(!url) return false;
 		url = url.replace("/api/", "/api/json.php/");
 		//console.log($route.params.id);
     this.currentrecord = this.$parent.$parent.$data.currentrecord;
