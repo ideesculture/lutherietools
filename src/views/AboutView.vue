@@ -19,19 +19,19 @@
   
       <tr> 
         <th>
-          <img src="img/Benjamin.jpeg"
+          <img src="@/assets/Benjamin.jpg"
           alt="Photo de Benjamin"
           width="200"
           height="200">
         </th> 
         <th>
-          <img src="img/Clement.jpg"
+          <img src="@/assets/Clement.jpg"
           alt="Photo de Clement "
           width="200"
           height="200">
           </th> 
           <th>
-          <img src="img/Andreas.jpg"
+          <img src="@/assets/Andreas.jpg"
           alt="Photo de Andreas "
           width="200"
           height="200">
@@ -63,19 +63,19 @@
   
       <tr> 
         <th>
-          <img src="img/FGautier.jpg"
+          <img src="@/assets/FGautier.jpg"
           alt="Photo de M. Gautier "
           width="200"
           height="200">
         </th> 
         <th>
-          <img src="img/FAblitzer.jpg"
+          <img src="@/assets/FAblitzer.jpg"
           alt="Photo de M. Ablitzer "
           width="200"
           height="200">
           </th> 
           <th>
-            <img src="img/GMichelin.jpg"
+            <img src="@/assets/GMichelin.jpg"
           alt="Photo de M. Michelin "
           width="200"
           height="200">
