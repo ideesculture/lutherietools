@@ -24,18 +24,39 @@
         Post-traitement
       </button>
       <div v-if="record.PtDialogIsOpen">
-				<div style="display:none;">
-        <label>filename</label>
-        <input name="filepath" v-model="filename" type="text" /><br />
-				</div>
+        <div style="display: none">
+          <label>filename</label>
+          <input
+            name="filepath"
+            class="input"
+            v-model="filename"
+            type="text"
+          /><br />
+        </div>
         <label>horizon</label>
-        <input name="horizon" v-model="horizon" type="text" /><br />
+        <input
+          name="horizon"
+          class="input"
+          v-model="horizon"
+          type="text"
+        /><br />
         <label>overlap</label>
-        <input name="overlap" v-model="overlap" type="text" /><br />
+        <input
+          name="overlap"
+          class="input"
+          v-model="overlap"
+          type="text"
+        /><br />
         <label>nbPoles</label>
-        <input name="nbPoles" v-model="nbPoles" type="text" /><br />
+        <input
+          name="nbPoles"
+          class="input"
+          v-model="nbPoles"
+          type="text"
+        /><br />
         <label>exportFolder</label>
-        <input name="exportFolder" v-model="exportFolder" type="text" /><br />
+        <input name="exportFolder" class="input" v-model="exportFolder" type="text" /><br />
+				<p v-html="spectrogramImage"></p>
         <button @click="cancelPtDialog(index)" :disabled="buttonsDisabled">
           Annuler
         </button>
@@ -100,9 +121,27 @@ export default {
       filename: "test",
       resultsDisabled: true,
       urlJson: "",
+			spectrogramImage: ""
     };
   },
   computed: {},
+  async mounted() {
+		this.micon = false;
+    this.micoff = true;
+
+		for (let i = 0; i < storeRecords.records.length; i++) {
+			console.log(i);
+			storeRecords.records[i].PtDialogIsOpen = false;
+		}
+    //this.record.title = storeRecords.records[index].title;
+    if (storeRecords.records[0].title) {
+      let cleanedName =
+        storeRecords.records[0].title + "_" + storeRecords.records[0].date;
+      cleanedName = cleanedName.latinize();
+      cleanedName = cleanedName.replace(/([\.\/:\s_éèêàçùöôûâîï])/gi, "_");
+      this.exportFolder = cleanedName;
+    }
+  },
   methods: {
     removeRecord(index) {
       console.log("remove", index);
@@ -117,17 +156,24 @@ export default {
     },
     togglePtDialog(index) {
       console.log("openPtDialog");
-			for (let i = 0; i < storeRecords.records.length; i++) {
+      for (let i = 0; i < storeRecords.records.length; i++) {
         console.log(i);
         storeRecords.records[i].PtDialogIsOpen = false;
       }
       storeRecords.records[index].PtDialogIsOpen =
         !storeRecords.records[index].PtDialogIsOpen;
-			console.log(storeRecords.records[index]);
-			//this.record.title = storeRecords.records[index].title;
-			let cleanedName = storeRecords.records[index].title+"_"+storeRecords.records[index].date;
-			cleanedName = cleanedName.replace(/([\.\/:\s_])/gi,"_");
-			this.exportFolder = cleanedName;
+      console.log(storeRecords.records[index]);
+      //this.record.title = storeRecords.records[index].title;
+      let cleanedName =
+        storeRecords.records[index].title +
+        "_" +
+        storeRecords.records[index].date;
+      cleanedName = cleanedName.latinize();
+      cleanedName = cleanedName.replace(/([\.\/:\s_éèêàçùöôûâîï])/gi, "_");
+      this.exportFolder = cleanedName;
+
+			let spectrogramUrl = "https://lutherietools.ideesculture.fr/api/python/exports/export_"+cleanedName+"/spectrogram.png";
+				this.spectrogramImage = "<img src='"+spectrogramUrl+"' class='spectrogramImage' />";
     },
     cancelPtDialog(index) {
       console.log("cancelPtDialog");
@@ -246,10 +292,6 @@ export default {
       console.log("this.$parent.$parent.url", this.$parent.$parent.url);
     },
   },
-  mounted() {
-    this.micon = false;
-    this.micoff = true;
-  },
 };
 </script>
 
@@ -292,5 +334,22 @@ button:disabled:hover {
   background-color: gray;
   border: gray;
   color: white;
+}
+label {
+	display: inline-block;
+	width:120px;
+	border-bottom:1px solid rgba(0,0,0,0.1);
+	margin-right:10px;
+}
+input.input {
+	border:1px solid rgba(0,0,0,0.1);
+	width:calc(100% - 130px);
+	margin-bottom:4px;
+}
+</style>
+<style>
+img.spectrogramImage {
+	width:100%;
+	height:auto;
 }
 </style>

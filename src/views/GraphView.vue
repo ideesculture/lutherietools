@@ -220,7 +220,7 @@ export default {
     .attr("stop-color", function (d) {
       return d.color;
     });
-  minLegend = d3.min(opacityBar);
+  /*minLegend = d3.min(opacityBar);
   maxLegend = d3.max(opacityBar);
   sumMinMaxLegend =
     d3.max(opacityBar) +
@@ -253,6 +253,7 @@ export default {
     .attr("x", 0)
     .attr("y", 2)
     .text("Average Global Surface Temperature");
+		*/
   },
 };
 </script>
