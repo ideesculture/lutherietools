@@ -1,5 +1,6 @@
 <template>
   <div class="graphContainer">
+		<div id="infoUrl" style='padding-top:10px;text-align:center'>source : {{infoUrl}}</div>
     <div id="chart"></div>
   </div>
 </template>
@@ -11,6 +12,7 @@ export default {
     return {
       count: 0,
       currentrecord: {},
+			infoUrl: ""
     };
   },
   methods: {
@@ -25,6 +27,7 @@ export default {
 		console.log("url", this.$parent.$parent.url);
 		let url = this.$parent.$parent.url;
 		if(!url) return false;
+		this.infoUrl=url;
 		url = url.replace("/api/", "/api/json.php/");
 		//console.log($route.params.id);
     this.currentrecord = this.$parent.$parent.$data.currentrecord;
@@ -142,7 +145,7 @@ export default {
         .attr("data-temp", xAccessor)
         .style("opacity", (d) => colorAccessor(d, index))
         .on("mouseover", function (d) {
-          console.log("target", d);
+          //console.log("target", d);
           if (d.target.style.opacity > 0.06) {
 						let ksiValue = ksi[d.target.__data__.indexSerie][d.target.__data__.index];
 						ksiValue = Math.round(ksiValue * 100) / 100;

@@ -24,8 +24,10 @@
         Post-traitement
       </button>
       <div v-if="record.PtDialogIsOpen">
+				<div style="display:none;">
         <label>filename</label>
         <input name="filepath" v-model="filename" type="text" /><br />
+				</div>
         <label>horizon</label>
         <input name="horizon" v-model="horizon" type="text" /><br />
         <label>overlap</label>
@@ -115,12 +117,17 @@ export default {
     },
     togglePtDialog(index) {
       console.log("openPtDialog");
-      for (let i = 0; i < storeRecords.records.length; i++) {
+			for (let i = 0; i < storeRecords.records.length; i++) {
         console.log(i);
         storeRecords.records[i].PtDialogIsOpen = false;
       }
       storeRecords.records[index].PtDialogIsOpen =
         !storeRecords.records[index].PtDialogIsOpen;
+			console.log(storeRecords.records[index]);
+			//this.record.title = storeRecords.records[index].title;
+			let cleanedName = storeRecords.records[index].title+"_"+storeRecords.records[index].date;
+			cleanedName = cleanedName.replace(/([\.\/:\s_])/gi,"_");
+			this.exportFolder = cleanedName;
     },
     cancelPtDialog(index) {
       console.log("cancelPtDialog");
