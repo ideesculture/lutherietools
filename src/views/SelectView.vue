@@ -56,7 +56,7 @@
         /><br />
         <label>exportFolder</label>
         <input name="exportFolder" class="input" v-model="exportFolder" type="text" /><br />
-				<p v-html="spectrogramImage"></p>
+		<img v-if="showSpectrogram == true" :src="spectrogramUrl" @error="spectrogramLoadError" />
         <button @click="cancelPtDialog(index)" :disabled="buttonsDisabled">
           Annuler
         </button>
@@ -121,7 +121,8 @@ export default {
       filename: "test",
       resultsDisabled: true,
       urlJson: "",
-			spectrogramImage: ""
+	spectrogramUrl: "",
+		showSpectrogram: false
     };
   },
   computed: {},
@@ -172,8 +173,12 @@ export default {
       cleanedName = cleanedName.replace(/([\.\/:\s_éèêàçùöôûâîï])/gi, "_");
       this.exportFolder = cleanedName;
 
-			let spectrogramUrl = "https://lutherietools.ideesculture.fr/api/python/exports/export_"+cleanedName+"/spectrogram.png";
-				this.spectrogramImage = "<img src='"+spectrogramUrl+"' class='spectrogramImage' />";
+      this.spectrogramUrl = "https://lutherietools.ideesculture.fr/api/python/exports/export_"+cleanedName+"/spectrogram.png";
+	  this.showSpectrogram = true;
+	},
+	spectrogramLoadError () {
+		this.showSpectrogram = false;
+      console.log('Image failed to load');
     },
     cancelPtDialog(index) {
       console.log("cancelPtDialog");
