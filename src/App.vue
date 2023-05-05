@@ -100,7 +100,7 @@ export default {
           sélectionner
         </button>
       </RouterLink>
-      <RouterLink class="nav-link" to="/mainresults">
+      <RouterLink class="nav-link" to="/select">
         <button class="btn btn-outline-success me-2" type="button">
           <font-awesome-icon icon="list" />
           résultats
