@@ -1,0 +1,8 @@
+{
+    "filepath": "clips_audio/Violon.wav",
+    "horizon" : 0.05,
+    "overlap" : 0,
+    "nbPoles" : 100,
+    "samplerate" : 48000,
+    "exportfolder" : "16733962400"
+}
