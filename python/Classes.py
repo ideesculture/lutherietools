@@ -93,7 +93,7 @@ class Matrices:
             plt.close(fig)
 
 
-        self.deNaNination()
+        #self.deNaNination()
 
         # définition du dictionnaire à stocker sous forme de JSON
         matricesDict: dict = {

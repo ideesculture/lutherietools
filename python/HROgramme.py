@@ -2,7 +2,7 @@ import numpy as np
 
 from EstimationParametres import estimation
 from Classes import Params, Matrices 
-from Stability import stability
+from stability import stability
 
 
 def HROgramme(signal: np.ndarray, params: Params) -> Matrices:
